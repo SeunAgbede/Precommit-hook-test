@@ -10,9 +10,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       
-      - name: install python
-        run: sudo apt-get install python3
-      
       - name: install pre-commit   
         run: sudo pip install pre-commit
       
@@ -39,4 +36,4 @@ jobs:
 
       - name: List files in the repository
         run: |
-          ls ${{ github.workspace }}
+          ls -la ${{ github.workspace }}
