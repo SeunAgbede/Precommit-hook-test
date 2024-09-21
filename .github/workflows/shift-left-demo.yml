@@ -17,7 +17,7 @@ jobs:
         run: sudo pip install pre-commit
       
       - name: install truffle-hog   
-        run: sudo apt-get install trufflehog
+        run: sudo curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sh -s -- -b /usr/local/bin
 
       - name: create a precommit config file
         run: |
