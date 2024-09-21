@@ -11,13 +11,13 @@ jobs:
         uses: actions/checkout@v4
       
       - name: install python
-        run: apt-get install python3
+        run: sudo apt-get install python3
       
       - name: install pre-commit   
-        run: pip install pre-commit
+        run: sudo pip install pre-commit
       
       - name: install truffle-hog   
-        run: apt-get install trufflehog
+        run: sudo apt-get install trufflehog
 
       - name: create a precommit config file
         run: |
