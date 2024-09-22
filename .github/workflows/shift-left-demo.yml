@@ -6,9 +6,7 @@ on: [push, pull_request]
 
 jobs:
   secret_checker:
-    
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,27 +16,14 @@ jobs:
 
       - name: Secret Scanning
         run: |
-          echo $?
           trufflehog filesystem --only-verified --fail .
-          echo $? 
-      
-      - name: Revert if secrets are found
+ 
+      - name: Commment if secrets are found
         if: failure()
         run: |
           echo ":: Secrects exposed, reverting to previous commit ::"
-          git config user.name "GitHub Action"
-          git config user.email "action@github.com"
-          git revert -m 1 HEAD
-          git push origin main
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          echo ":: Do better next time ${{ vars.NAME }} ::"
       
-      - name: Revert commit if lint fails
+      - name: No secrets found
         run: |
           echo ":: No secrects exposed ::"
-
-
-
-      - name: List files in the repository
-        run: |
-          ls -la ${{ github.workspace }}
