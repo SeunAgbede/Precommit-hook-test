@@ -22,14 +22,7 @@ jobs:
           trufflehog filesystem --only-verified --fail .
           echo $? 
       
-      - name: Secret Scanning
-        uses: trufflesecurity/trufflehog@main
-        with:
-          extra_args: |
-            --only-verified
-            --fail
-      
-      - name: Revert commit if lint fails
+      - name: Revert if secrets are found
         if: failure()
         run: |
           echo ":: Secrects exposed, reverting to previous commit ::"
